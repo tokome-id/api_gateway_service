@@ -8,6 +8,9 @@ deploy-nginx:
 deploy-core-api:
 	sudo docker compose -f docker-compose.02.tokome-core.yaml build --pull --no-cache tokome-core-api && sudo docker compose -f docker-compose.02.tokome-core.yaml up --no-deps -d tokome-core-api
 
+deploy-move-api:
+	sudo docker compose -f docker-compose.03.move-core.yaml build --pull --no-cache move-core-api && sudo docker compose -f docker-compose.03.move-core.yaml up --no-deps -d move-core-api
+
 renew-certbot:
 	sudo docker compose run --rm certbot renew
 
