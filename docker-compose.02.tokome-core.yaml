@@ -2,7 +2,7 @@ version: '3'
 
 services:
   tokome-core-api:
-    image: tokome/tkm_core_service:0.1.0.alpha-23
+    image: tokome/tkm_core_service:${TOKOME_CORE_API_TAG}
     deploy:
       replicas: 2
       resources:

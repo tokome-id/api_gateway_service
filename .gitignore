@@ -1,3 +1,4 @@
 certbot/*
+.env
 .env.move_core_service
 .env.tkm_core_service

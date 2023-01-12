@@ -2,7 +2,7 @@ version: '3'
 
 services:
   move-core-api:
-    image: tokome/move_core_service:0.1.0.alpha-3
+    image: tokome/move_core_service:${MOVE_CORE_API_TAG}
     deploy:
       replicas: 2
       resources:
