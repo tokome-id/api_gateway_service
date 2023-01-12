@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  api-gateway:
+    build: nginx
+    restart: always
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    networks:
+      - tkm-public-net
+      - tkm-internal-net
+      - move-internal-net
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    networks:
+      - tkm-internal-net
+      - move-internal-net
+
+networks:
+  tkm-public-net:
+    external: true
+  tkm-internal-net:
+    external: true
+  move-internal-net:
+    external: true
